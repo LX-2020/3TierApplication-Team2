@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="style.css">
+    <!-- Connecting with the stylesheet found inside of current directory 'pages' -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+</head>
+<body>
+    <div class="center">
+        <h1>Login</h1>
+        <!-- All of these will be post methods -->
+        <!-- Can we just do a SELECT from here or something and then compare to our table using like NOT IN?? or IN? -->
+        <form method="post">
+            <!-- txt field for the user to enter login deets. -->
+        <div class="txt_field">
+            <!-- required by user -->
+            <input type="text" required>
+            <span></span>
+            <label>Username</label>
+        </div>
+        <div class="txt_field">
+            <!-- required by user, notice the type is 'password', which means hide txt upon typing into this box -->
+            <input type="password" required>
+            <span></span>
+            <label>Password</label>
+        </div>
+        <div class="pass">Forgot Password?</div>
+        <input type="submit" value="Login">
+        <div class="signup_link">
+            <!-- Links to nothing atm, but this needs to link to the account creation screen. This is also where we will feed data to the jsp for INSERTING into our user table -->
+            Don't have an account? <a href="#">Create an Account</a>
+        </div>
+    </form>
+    </div>
+</body>
+</html>
