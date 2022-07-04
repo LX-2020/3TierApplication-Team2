@@ -1,0 +1,139 @@
+/* Stuff for the entire body */
+body{
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+    background-image:url('../images/dorms.jpg');
+    background-size: cover;
+    background-position: center;
+    /*background: linear-gradient(120deg, #2980b9, #8e44ad);
+    */
+    height: 100vh;
+    overflow: hidden;
+}
+/* Stuff for the center div */
+.center{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    /* Pretty much just center the form */
+    transform: translate(-50%, -50%);
+    width: 400px;
+    background: white;
+    /* Make the actual background for the login form */
+    border-radius: 10px;
+    /* ^^ slightly rounded */
+}
+.center h1{
+    /* Align the text of "login" to the center of the .center area */
+    text-align:center;
+    /* Specify padding for the "login" text relative to others in the box */
+    padding: 0 0 20px 0;
+    border-bottom: 1px solid silver;
+    /* Bottom silver line underneath Login that divides the title of the form from the form itself */
+}
+.center form{
+    /* Move everything in the actual form section to center offset to left */
+    padding: 0 40px;
+    box-sizing: border-box;
+}
+form .txt_field{
+    position:relative;
+    border-bottom: 2px solid #adadad;
+    /* Underline that's silver before it gets hovered under username and pass */
+    margin: 30px 0;
+}
+.txt_field input{
+    /* Just stuff for the input field boxes where users type */
+    width: 100%;
+    padding: 0 5px;
+    height: 40px;
+    font-size: 16px;
+    border: none;
+    background: none;
+    outline: none;
+}
+.txt_field label{
+    /* Absolute instead of relative positioning */
+    position: absolute;
+    /* place 'username' and 'password' text into the box itself (until clicked) */
+    top: 50%;
+    left: 5px;
+    color: #adadad;
+    /* Ensure we are down halfway on the page for the forms placement every time (??) */
+    transform: translateY(-50%);
+    font-size: 16px;
+    pointer-events: none;
+    /* Animation time for the blue line at the bottom of username and password upon clicking those txt fields */
+    transition: .25s;
+}
+.txt_field span::before{
+    content:'';
+    position: absolute;
+    top: 40px;
+    left: 0;
+    /* Had to change the width here to 0 for now due to the wierd animation property stuff */
+    /* If I keep 100% here then the blue shows 24.7, we want it to show only when clicked. */
+    width: 0%;
+    height: 2px;
+    background: #2691d9;
+    transition: .5s;
+}
+.txt_field input:focus ~ label,
+.txt_field input:valid ~ label{
+    /* Username and Password text slide upward animation by -5px on y */
+    top: -5px;
+    color: #2691d9;
+}
+.txt_field input:focus ~ span::before,
+.txt_field input:valid ~ span::before{
+    /* Change to blue bar under user and pass upon clicking txt field */
+    width: 100%;
+}
+.pass{
+    /* Formatting for "forgot password" + change cursor type when hovering to let users know its clickable */
+    margin: -5px 0 20px 5px;
+    color: #a6a6a6;
+    cursor: pointer;
+}
+.pass:hover{
+    /* Just underline when hovering the forgot pass button */
+    text-decoration: underline;
+}
+input[type="submit"]{
+    /* Login button */
+    width:100%;
+    margin: -5px 0 20px 5px;
+    height: 50px;
+    border: 1px solid;
+    background: #2691d9;
+    border-radius: 25px;
+    font-size: 15px;
+    color: #e9f4fb;
+    /* ^^^ background txt color in the circle */
+    font-weight: 700;
+    /* High weight cuz it looks bad without the extra thiccness :) */
+    cursor: pointer;
+    outline: none;
+}
+input[type="submit"]:hover{
+    /* Upon hovering give a small amount of emphasis on the login button with that 25px blue border being added in .5s */
+    border-color: #2691d9;
+    transition: .5s;
+}
+.signup_link{
+    /* Padding for Don't have an account */
+    margin: 30px 0;
+    text-align: center;
+    font-size: 16px;
+    color: #666666;
+}
+.signup_link a{
+    /* color for the clickable 'Create an Account' txt */
+    color: #2691d9;
+    text-decoration: none;
+}
+.signup_link a:hover{
+    /* When hover, underline just like we do for forgot password button */
+    text-decoration: underline;
+}
