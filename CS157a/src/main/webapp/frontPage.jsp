@@ -27,30 +27,30 @@
   		}
   	
   	.topnav {
-  overflow: hidden;
-  background-color: #e9e9e9;
-  width: 85.6%;
-}
+  		overflow: hidden;
+  		background-color: #e9e9e9;
+  		width: 85.6%;
+	}
 
-.topnav a {
-  float: left;
-  display: block;
-  color: black;
-  text-align: center;
-  padding: 14px 20px;
-  text-decoration: none;
-  font-size: 17px;
-}
+	.topnav a {
+  		float: left;
+  		display: block;
+  		color: black;
+  		text-align: center;
+  		padding: 14px 20px;
+  		text-decoration: none;
+  		font-size: 17px;
+	}
 
-.topnav a:hover {
-  background-color: #ddd;
-  color: black;
-}
+	.topnav a:hover {
+  		background-color: #ddd;
+  		color: black;
+	}
 
-.topnav a.active {
-  background-color: #2196F3;
-  color: white;
-}
+	.topnav a.active {
+  		background-color: #2196F3;
+  		color: white;
+	}
 
 .topnav .search-container {
   float: right;
