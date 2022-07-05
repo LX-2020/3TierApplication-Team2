@@ -31,7 +31,6 @@
   		background-color: #e9e9e9;
   		width: 85.6%;
 	}
-
 	.topnav a {
   		float: left;
   		display: block;
@@ -41,28 +40,23 @@
   		text-decoration: none;
   		font-size: 17px;
 	}
-
 	.topnav a:hover {
   		background-color: #ddd;
   		color: black;
 	}
-
 	.topnav a.active {
   		background-color: #2196F3;
   		color: white;
 	}
-
 .topnav .search-container {
   float: right;
 }
-
 .topnav input[type=text] {
   padding: 6px;
   margin-top: 8px;
   font-size: 17px;
   border: none;
 }
-
 .topnav .search-container button {
   float: right;
   padding: 6px 10px;
@@ -73,7 +67,6 @@
   border: none;
   cursor: pointer;
 }
-
 .topnav .search-container button:hover {
   background: #ccc;
 }
@@ -113,15 +106,15 @@
 	<article>
 	<div class="ex1"> 
     <% //for tomcat server
-     String db = "Team2";
+     String db = "sjsu-bq";
         String user; // assumes database name is the same as username
           user = "root";
-        String password = "620302mlx";
+        String password = "Timecardmnew2244";
         try {
             
             java.sql.Connection con; 
             Class.forName("com.mysql.jdbc.Driver");
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/Team2?autoReconnect=true&useSSL=false",user, password);
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/sjsu-bq?autoReconnect=true&useSSL=false",user, password);
            
             
             out.println("What's your \"questions\": <br/>");
