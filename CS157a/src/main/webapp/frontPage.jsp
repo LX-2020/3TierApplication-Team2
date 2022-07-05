@@ -17,13 +17,6 @@
     h1{
     	text-align: center;
     }
-    .avatar {
-        vertical-align: middle;
-  		width: 50px;
-  		height: 50px;
-  		border-radius: 50%;
-  	}
-  
   	
   	nav {
   		float: left;
