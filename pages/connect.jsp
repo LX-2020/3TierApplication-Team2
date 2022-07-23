@@ -26,6 +26,7 @@ try{
     int x = ps.executeUpdate();
     if(x>0){
         System.out.print("Registration done successfully...");
+        response.sendRedirect("login.html");
     }else{
         System.out.print("Registration failed...");
     }
