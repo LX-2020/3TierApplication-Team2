@@ -196,12 +196,7 @@
 	
  	<div class="form-popup" id="newQuestion">    
  	<form action="frontPage.jsp" method="POST" class="form-container">
-    	<h3>Please ask your question here:</h3>
-
-    	<textarea id="questiontext" name="questiontext" >What...</textarea>
-
-    	<button type="submit" class="btn">add</button>
-    	<button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+    	
     <%!
     public class addQuestion{
     	String db = "Team2";
@@ -248,19 +243,26 @@
     <%
     	int result = 0;
     	
-    	String qtext = new String();    	    	
+    if (request.getParameter("add")!= null) { 
+    		String qtext = new String();    	    	
     	
-    	if (request.getParameter("questiontext") != null){
-    		qtext = request.getParameter("questiontext");
-    	}
+    		if (request.getParameter("questiontext") != null){
+    			qtext = request.getParameter("questiontext");
+    		}
     	
-    	Date date = new Date();
-    	Timestamp timeStamp = new Timestamp(date.getTime());
+    		Date date = new Date();
+    		Timestamp timeStamp = new Timestamp(date.getTime());
     	
-    	addQuestion question = new addQuestion();
-    	result = question.setQuestion(qtext, timeStamp);
+    		addQuestion question = new addQuestion();
+    		result = question.setQuestion(qtext, timeStamp);
+    }	
     %>
-    
+   <h3>Please ask your question here:</h3>
+
+    	<textarea id="questiontext" name="questiontext" >What...</textarea>
+
+    	<button name="add" type="submit" class="btn">add</button>
+    	<button type="button" class="btn cancel" onclick="closeForm()">Close</button> 
   </form>
 </div>
   
