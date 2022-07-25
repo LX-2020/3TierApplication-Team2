@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page import="java.sql.*"%>
 <%@ page import="java.util.Date" %>
 <% Class.forName("com.mysql.cj.jdbc.Driver"); %>
 <html>
@@ -52,6 +51,7 @@
   		background-color: #2196F3;
   		color: white;
 	}
+
 	
     /* search box in top navigation bar */
     .topnav .search-container {
@@ -173,6 +173,7 @@
 
 
 <body> 
+
    <h1>SJSU Burning Questions</h1>
    	
 	<div class="topnav">
@@ -283,16 +284,20 @@ function closeForm() {
 	<article>
 	<div class="ex1"> 
     <% //for tomcat server
-     String db = "Team2";
+     String db = "sjsu-bq";
         String user; // assumes database name is the same as username
           user = "root";
-        String password = "620302mlx";
+        String password = "Timecardmnew2244";
         try {
             
             java.sql.Connection con; 
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/Team2?autoReconnect=true&useSSL=false",user, password);
-           
+
+            Class.forName("com.mysql.jdbc.Driver");
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/sjsu-bq?autoReconnect=true&useSSL=false",user, password);
+
+           // Class.forName("com.mysql.cj.jdbc.Driver");
+           // con = DriverManager.getConnection("jdbc:mysql://localhost:3306/Team2?autoReconnect=true&useSSL=false",user, password);
+
             
             out.println("What's your \"questions\": <br/>");
             Statement stmt = con.createStatement();
@@ -315,46 +320,7 @@ function closeForm() {
     %>
     </div>	
    </article>
-   public class searchQuestion{
-    		String db = "Team2";
-        	String user = "root";
-        	String password = "620302mlx";
-        
-        	java.sql.Connection con2; 
-        	PreparedStatement searchquestion = null;
-        	ResultSet rs = null;
-        
-        	public searchQuestion() {
-       			try {                                 
-            		con2 = DriverManager.getConnection("jdbc:mysql://localhost:3306/Team2?autoReconnect=true&useSSL=false",user, password);
-        
-            		searchquestion = con2.prepareStatement(
-            		"SELECT  question_id, question_text, dateCreated FROM questions WHERE question_text LIKE '%?%' ");
-            		
-        		} catch(SQLException e) { 
-        		e.printStackTrace(); 
-        		}
-        	}
-       		public String getQuestion(String text) {            	
-       			ResultSet result;
-             	try {            	
-             		           	
-             		result = searchquestion.executeQuery();
-             		if(result.next()==false) {
-             			
-             		}
-             		else {
-             			
-             		}
-             	
-             	}catch (SQLException e) {
-             	e.printStackTrace();
-             	}             	             	   	
-             
-         	return result;
-         	}
-			}
    
-  		
-		
+  
+  </body>
 </html>
