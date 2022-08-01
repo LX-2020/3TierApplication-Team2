@@ -4,7 +4,9 @@
     	float: center;
     	background-color: #E6E6FA;
     	background-image: url("https://cpb-us-w2.wpmucdn.com/blogs.sjsu.edu/dist/f/94/files/2022/01/general-campus-dschmitz-021616-8616.jpg");
-    
+    	margin: 0;	
+		font-family: 'Work Sans', sans-serif;
+		font-weight: 300;
     }
      
     h1{
@@ -12,26 +14,28 @@
     	color: #FFCA33;   	
     	padding-top: 20px;
     }
-  		  
-  	header {
-	background-color: BLUE;
-	}
-	
-	.topnav{
-  		overflow: auto;
-  		width:100%;
-  		height:10%;
-  		  		  		 		
-	}
-	.topnav a{ 		
-  		display: block;
-  		color: #FFCA33;
+    
+	li {
+  		display: inline-block;
+  		padding: 3px 20px;
+	} 		  
+  	.topnav { 		
+  		background-color: #E6E6E6;
+  		margin-top: 10px; 		
+		display: table;
+		width: 100%;
+		
+   	}
+   	.topnav ul{
+   		margin-left:0px
+   	}
+   
+	.topnav a{ 		  		
+  		color: #0101DF;
   		text-align: center;
-  		padding: 14px 20px;
-  		text-decoration: none;
-  		font-size: 17px;
-  		float: left
   		
+  		font-size: 17px;
+  		font-weight: 400;		
 	}
 	.topnav a:hover{
   		background-color: #ddd;
@@ -43,27 +47,29 @@
 	}
     /* search box in top navigation bar */    
     .topnav input[type=text]{
-    	padding: 6px;
     	margin-top: 0px;
     	font-size: 15px;    	
-    	margin-left: 5%;
+    	margin-right: 0px;
      	padding: 10px;
      	border-radius: 10px;
+     	/*display: table-cell;
+		vertical-align: bottom;*/
+     	
     }
-    .topnav button{
-    	padding: 6px;
-    	margin-top: 0px;
-    	font-size: 20px;    	
-    	border: none;
-    	color: #FFCA33;
-    	background-color:BLUE;
+    .topnav button {
+    	display:inline;	
+		border: none;
+		padding: 10px;
+		margin-left: 0px;
+		margin-top:5px;
+		background-color: #E6E6E6;
     }
-   
-	
 	/* Ask question button style*/
-	.styled button{ 			    	
+	.ask button{
+	
+		margin-top:15px;			    	
     	border: 0;
-    	line-height: 2.5;   	
+    	line-height: 1.5;
     	font-size: 1rem;
     	text-align: center;
     	color: #fff;
@@ -78,16 +84,15 @@
                 inset -2px -2px 3px rgba(0, 0, 0, .6);
    	
     	padding-right: 10px;
-    	padding-left: 10px;
-    	float: right;
+    	padding-left: 10px;  	
     	
 	}
 
-	.styled button:hover{
+	.ask button:hover{
     	background-color: rgba(255, 0, 0, 1);
 	}
 
-	.styled button:active{
+	.ask button:active{
     	box-shadow: inset -2px -2px 3px rgba(255, 255, 255, .6),
                 inset 2px 2px 3px rgba(0, 0, 0, .6);
 	}
@@ -158,4 +163,81 @@
   		background-color: #f1f1f1;
   		height: 100%; 
 	}
+	
+.dropdown {	
+	display: inline-block;
+}	
+
+.dropdown .dropbtn {
+  font-size: 17px;    
+  border: none;
+  outline: none;
+  color: #0101DF;  
+  background-color: inherit;
+  font-family: inherit; 
+  display:inline;			
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  float: none;
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+.topnav a:hover, .dropdown:hover .dropbtn {
+  background-color: #555;
+  color: white;
+}
+
+.dropdown-content a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+@media screen and (max-width: 600px) {
+  .topnav a:not(:first-child), .dropbtn {
+    display: none;
+  }
+  .topnav a.icon {
+    float: right;
+    display: block;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .topnav.responsive {position: relative;}
+  .topnav.responsive .icon {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+  .topnav.responsive a {
+    float: none;
+    display: block;
+    text-align: left;
+  }
+  .topnav.responsive .dropdown {float: none;}
+  .topnav.responsive .dropdown-content {position: relative;}
+  .topnav.responsive .dropbtn {
+    display: block;
+    width: 100%;
+    text-align: left;
+  }
+}
     
