@@ -27,16 +27,29 @@
             				+ "AND q.category_id = c.category_id "
             				+ "AND q.category_id = 1");  
    
-    while (rs.next()) {
-    out.println(rs.getInt(1) + ".");
-    out.println(rs.getString(2) + "<br/><br/>");
-    out.println(rs.getString(3) + "<br/><br/>");
-    out.println(rs.getString(4) + "<br/><br/>");
-    }
-	
     %>
+    <div class="box">
+	</div>
+	<div class="column">
+	<% while(rs.next()) {%>
+  		<div class="row">
+    		<table>  		
+    		
+      			<tr>
+        			<th><%= rs.getString("question_text")%></th>       
+      			</tr>
+      			<tr>
+        			<td><%= rs.getString("answer_text")%></td>        
+      			</tr>         
+    		</table>
+  		</div>
+		<%} %>
+  		
+   		
+	</div>
+  </div>
     
-</div>
+
 </article>
 </body>
 </html>

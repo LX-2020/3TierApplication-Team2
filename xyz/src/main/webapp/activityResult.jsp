@@ -25,8 +25,8 @@
             		+ "FROM questions q, answers a, Category c "
             		+ "WHERE q.question_id = a.question_id "
             				+ "AND q.category_id = c.category_id "
-            				+ "AND q.category_id = 3");  
- 
+            				+ "AND q.category_id = 4");  
+   
     %>
     <div class="box">
 	</div>
@@ -47,8 +47,9 @@
   		
    		
 	</div>
+  </div>
     
-</div>
+
 </article>
 </body>
 </html>

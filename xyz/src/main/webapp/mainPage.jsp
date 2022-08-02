@@ -17,9 +17,11 @@
    	 	
 	<div class="topnav">
 	<ul>		
-		<li><a class="active" href="#top">Home</a></li>		
+		<li><a class="active" href="homePage.jsp">Home</a></li>		
 		
-		<li><a href="#account">Account</a></li> 
+		<li><a href="#account">Account</a></li>
+		<li><a href="moderation.jsp">Moderation</a></li>
+		<li><a href="../../../../CS157a/src/main/webapp/pages/login.html">Log Out</a></li>
 		<li>
 			<div class="dropdown">
     			<button class="dropbtn">Category 
@@ -28,7 +30,7 @@
     			<div class="dropdown-content">
       				<a href="courseResult.jsp">course</a>
       				<a href="slResult.jsp">schoolLife</a>
-      				<a href="actResult.jsp">activity</a>
+      				<a href="activityResult.jsp">activity</a>
       				<a href="byResult.jsp">internship</a>     				    				   		
     			</div>
     		</div>
@@ -99,4 +101,4 @@ function closeForm() {
 }	
 </script>	
    
-	
+  

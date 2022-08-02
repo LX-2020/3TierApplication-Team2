@@ -15,34 +15,39 @@
 	<%@ include file = "mainPage.jsp" %>
 	<article>
 	<div class="ex1"> 
-    <% //for tomcat server
-     
-        try {
-            
+	<% //for tomcat server
+         
             java.sql.Connection con; 
             Class.forName("com.mysql.cj.jdbc.Driver");
             con = DriverManager.getConnection("jdbc:mysql://localhost:3306/sjsu-bq?autoReconnect=true&useSSL=false",user, password);
-           
-            
-            out.println("What's your \"questions\": <br/>");
+       
             Statement stmt = con.createStatement();
             ResultSet rs = 
             		stmt.executeQuery("SELECT questions.question_id,question_text,answer_text,answers.dateUpdated, answers.user_id FROM questions,answers WHERE questions.question_id = answers.question_id ORDER BY dateUpdated DESC");
-            while (rs.next()) {
-                out.println(rs.getInt(1) + ". " + rs.getString(2) + "<br/><br/>");
-                out.println(rs.getString(3) + "<br/><br/>");
-                out.println("Last Updated by: " + rs.getString(5) + " " + rs.getDate(4) + "<br/><br/>");
-                
-            }
-            
-            
-            rs.close();
-            stmt.close();
-            con.close();
-        } catch(SQLException e) { 
-            out.println("SQLException caught: " + e.getMessage()); 
-        }
+           
+        
     %>
+	<div class="box">
+	</div>
+	<div class="column">
+	<% while(rs.next()) {%>
+  		<div class="row">
+    		<table>  		
+    		
+      			<tr>
+        			<th><%= rs.getString("question_text")%></th>       
+      			</tr>
+      			<tr>
+        			<td><%= rs.getString("answer_text")%></td>        
+      			</tr>         
+    		</table>
+  		</div>
+		<%} %>
+  		
+   		
+	</div>
+
+    
     </div>	
    	</article>
    

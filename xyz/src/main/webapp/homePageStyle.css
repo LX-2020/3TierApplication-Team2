@@ -1,18 +1,18 @@
 @charset "UTF-8";
 
     body{
-    	float: center;
-    	background-color: #E6E6FA;
+    	float: center;   	
     	background-image: url("https://cpb-us-w2.wpmucdn.com/blogs.sjsu.edu/dist/f/94/files/2022/01/general-campus-dschmitz-021616-8616.jpg");
     	margin: 0;	
-		font-family: 'Work Sans', sans-serif;
+		font-family: 'Trebuchet MS', sans-serif;
 		font-weight: 300;
     }
      
     h1{
     	text-align: center;
-    	color: #FFCA33;   	
+    	color: blue;   	
     	padding-top: 20px;
+    	
     }
     
 	li {
@@ -23,7 +23,7 @@
   		background-color: #E6E6E6;
   		margin-top: 10px; 		
 		display: table;
-		width: 100%;
+		width: 92.8%;
 		
    	}
    	.topnav ul{
@@ -159,7 +159,7 @@
   	article {
   		float: center;
   		padding: 20px;
-  		width: 70%;
+  		width: 90%;
   		background-color: #f1f1f1;
   		height: 100%; 
 	}
@@ -240,4 +240,47 @@
     text-align: left;
   }
 }
+
+
+.box{
+  box-sizing: border-box;
+}
+
+
+.row {
+  margin-left:-5px;
+  margin-right:-5px;
+}
+  
+.column {
+  float: left;
+  width: 80%;
+  padding: 25px;
+}
+
+/* Clearfix (clear floats) */
+.row::after {
+  content: "     ";
+  clear: both;
+  display: table;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  width: 100%;
+  border: 1px solid #ddd;
+  margin:10px;
+}
+
+th, td {
+  text-align: left;
+  padding: 16px;
+}
+
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+
     
