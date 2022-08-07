@@ -1,6 +1,6 @@
 <%@ page import="java.sql.*"%> 
 <%@ page import="java.util.Date" %>
-<% Class.forName("com.mysql.cj.jdbc.Driver"); %>
+
 <!DOCTYPE html>
 <html>
 	<head> 
@@ -11,15 +11,14 @@
 	</head>
 
 <body> 
+	
   	<%@ include file = "mainPage.jsp" %>
 <article>
 <div class="ex1"> 
-
+    <%@ include file = "dbConnection.jsp" %>
 	<%		
-	
-	 java.sql.Connection con2 = DriverManager.getConnection("jdbc:mysql://localhost:3306/sjsu-bq?autoReconnect=true&useSSL=false",user, password);
-     	
-    Statement stmt = con2.createStatement();
+	  	
+    Statement stmt = conSC.createStatement();
 	ResultSet rs = 
     		stmt.executeQuery("SELECT  q.question_id, question_text, answer_text, a.dateUpdated " 
             		+ "FROM questions q, answers a, Category c "

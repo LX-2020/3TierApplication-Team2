@@ -54,16 +54,12 @@
    	
  	<div class="form-popup" id="newQuestion">    
  	<form action="homePage.jsp" method="POST" class="form-container">
+    <%@ include file = "dbConnection.jsp" %>
     	
     <%
   
-    	String db = "sjsu-bq";
-        String user = "root";
-        String password = "620302mlx";
-        
-        java.sql.Connection con1 = DriverManager.getConnection("jdbc:mysql://localhost:3306/sjsu-bq?autoReconnect=true&useSSL=false",user, password);
-        
-        PreparedStatement addquestion = con1.prepareStatement(
+    	
+        PreparedStatement addquestion = conAsk.prepareStatement(
         		"INSERT INTO questions(question_text, dateCreated) "
         		+ "VALUES (?,?)" );
         
