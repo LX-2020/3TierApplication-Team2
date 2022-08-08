@@ -17,11 +17,30 @@
 	<div class="ex1"> 
 	<% //for tomcat server
                     
-            Statement stmt = con.createStatement();
-            ResultSet rs = 
-            		stmt.executeQuery("SELECT questions.question_id,question_text,answer_text,answers.dateUpdated, answers.user_id FROM questions,answers WHERE questions.question_id = answers.question_id ORDER BY dateUpdated DESC");
+           Statement stmt = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+          //  ResultSet rsa = 
+            //		stmt.executeQuery( "SELECT question_id, answer_text, dateUpdated "
+            //				+ " FROM answers");
+            			           				
+          // ResultSet rsq =
+        //		   stmt.executeQuery( "SELECT question_id, question_text FROM questions" );
            
-        
+         /* ResultSet rs = stmt.executeQuery(" SELECT q.question_id,q.question_text,a.answer_text,a.dateUpdated, a.user_id "
+          +" FROM questions q,answers a "
+          +" WHERE q.question_id = a.question_id "
+          +" ORDER BY q.question_id");*/
+          
+          ResultSet rs1, rs2 = null;
+          PreparedStatement ps = null;
+
+          String query = " SELECT q.question_id,q.question_text,a.answer_text,a.dateUpdated, a.user_id "
+                  +" FROM questions q,answers a "
+                  +" WHERE q.question_id = a.question_id "
+                  +" ORDER BY q.question_id";
+
+          ps = con.prepareStatement(query);                
+          rs1 = ps.executeQuery();
+          rs2 = ps.executeQuery();
     %>
     
 	<div class="box">
@@ -29,18 +48,23 @@
 	<div class="column">
 	
 	
-	<% while(rs.next()) {%>
+	<% while(rs1.next()) {%>
   		<div class="row">
     		<table>  		   		
-      			<tr>
-        			<th><%= rs.getString("question_text")%></th>       
+      			<tr>     			
+        			<th><%= rs1.getString("question_text")%></th>       
       			</tr>
-      			<tr>
-        			<td><%= rs.getString("answer_text")%></td>        
+      			<%int temp = rs1.getInt("question_id"); %>
+      			<%while(rs2.next()){ %>
+      				<%if (rs2.getInt("question_id")==temp){%>
+      			<tr>     				
+      					<td><%=rs2.getString("answer_text") %>></td>
       			</tr> 
       			
+      				<%}%>
+      			<%}%>
       			<tr class="ask">     			   	      			
-  					<td><button type="button" onclick="answerQuestion(<%= rs.getInt("question_id") %>)">Answer</button></td>  				 
+  					<td><button type="button" onclick="answerQuestion(<%= rs1.getInt("question_id") %>)">Answer</button></td> 			 
   				</tr>   				     
     		</table>
   		</div>
@@ -54,8 +78,7 @@
     <script>
 		function answerQuestion(id) {  
 			document.getElementById("answer").style.display = "block";
-			document.getElementById("id").value = id;
-			
+			document.getElementById("qid").value = id;			
 			
 		}
 
@@ -66,7 +89,7 @@
 	
 	<div class="form-popup" id="answer">    
  		<form action="homePage.jsp" method="POST" class="form-container">
- 			<input  id="id"></input>	
+ 			ID: <input id="qid" name="qid" readonly="readonly"></input>
  			
  			<h3>Add an answer:</h3>						
     	    <textarea id="answertext" name="answertext" >Add an answer...</textarea>      	    	    
@@ -86,24 +109,24 @@
         		"INSERT INTO answers(question_id, answer_text, dateUpdated) "
         		+ "VALUES (?,?,?)" );
         
+    	String sid = request.getParameter("qid"); 
+    	
         if (request.getParameter("add")!= null) { 
 
         	String qtext = request.getParameter("answertext"); 
-        	int qid = Integer.parseInt(request.getParameter("id"));
+
+        	int qid = Integer.parseInt(sid);
         	
                 
-        Date date = new Date();
-		Timestamp timeStamp = new Timestamp(date.getTime());
-		
-		
-		
-		addanswer.setInt(1, qid);
-		addanswer.setString(2, qtext);		
-		addanswer.setTimestamp(3, timeStamp);
-		int result = addanswer.executeUpdate();
+        	Date date = new Date();
+			Timestamp timeStamp = new Timestamp(date.getTime());
+						
+			addanswer.setInt(1, qid);
+			addanswer.setString(2, qtext);		
+			addanswer.setTimestamp(3, timeStamp);
+			int result = addanswer.executeUpdate();
         }
-        
-       	
+               	
     %> 
     
    	</article>  

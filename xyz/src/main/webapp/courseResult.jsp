@@ -15,7 +15,7 @@
   	<%@ include file = "mainPage.jsp" %>
 <article>
 <div class="ex1"> 
-    <%@ include file = "dbConnection.jsp" %>
+    
 	<%		
 	  	
     Statement stmt = conSC.createStatement();
