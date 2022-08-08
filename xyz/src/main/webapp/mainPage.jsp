@@ -1,6 +1,7 @@
 <%@ page import="java.sql.*"%> 
 <%@ page import="java.util.Date" %>
 <% Class.forName("com.mysql.cj.jdbc.Driver"); %>
+<!-- mainPage contains web page header, navigation bar and ask question function -->
 <html>	
 	<head> 
 	<meta charset="UTF-8">
@@ -14,7 +15,7 @@
 	
    
    	<h1>SJSU Burning Questions</h1>
-   	 	
+   	<!-- top navigation bar contains Home, Account, Moderation, Log out links, search bar, and Category drop down menu --> 	
 	<div class="topnav">
 	<ul>		
 		<li><a class="active" href="homePage.jsp">Home</a></li>		
@@ -36,13 +37,15 @@
     		</div>
   		</li>
   		
-						
+		<!-- search bar -->				
   		<li><form action="searchResult.jsp" method="POST">
   			<ul>
   			<li><input  type="text" name="searchKey"  placeholder="Search question here.."></li>
   			<li><button type="submit"><i class="fa fa-search"></i></button></li>
   			</ul>
   		</form></li>
+  		
+  		<!-- ask question button -->
   		<li class="ask">
   			<button type="button" onclick="askQuestion()">Ask a question</button>
   		</li>			
@@ -50,15 +53,13 @@
   		
    	</div>
    	
-   	
-   	
+   	<!-- pop up form for ask question button -->
  	<div class="form-popup" id="newQuestion">    
  	<form action="homePage.jsp" method="POST" class="form-container">
     <%@ include file = "dbConnection.jsp" %>
     	
     <%
-  
-    	
+    	//add new question to the database questions table
         PreparedStatement addquestion = conAsk.prepareStatement(
         		"INSERT INTO questions(question_text, dateCreated) "
         		+ "VALUES (?,?)" );
@@ -74,27 +75,24 @@
 		addquestion.setTimestamp(2, timeStamp);
 		int result = addquestion.executeUpdate();
         }
-        
-       	
+              	
     %> 
-    
+    <!-- pop up form format -->
    	<h3>Please ask your question here:</h3>
-
     	<textarea id="questiontext" name="questiontext" >What...</textarea>
-
     	<button name="add" type="submit" class="btn">add</button>
     	<button type="button" class="btn cancel" onclick="closeForm()">Close</button> 
   	</form>
 	</div>
-  
-<script>
-function askQuestion() {  
-	document.getElementById("newQuestion").style.display = "block";
-}
+  	
+	<script>
+	function askQuestion() {  
+		document.getElementById("newQuestion").style.display = "block";
+	}
 
-function closeForm() {
-  document.getElementById("newQuestion").style.display = "none";
-}	
-</script>	
+	function closeForm() {
+  		document.getElementById("newQuestion").style.display = "none";
+	}	
+	</script>	
    
   

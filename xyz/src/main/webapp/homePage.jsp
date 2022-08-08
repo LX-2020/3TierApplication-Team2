@@ -1,5 +1,6 @@
 <%@ page import="java.sql.*"%> 
-<%@ page import="java.util.Date" %>
+<%@ page import="java.util.*" %>
+<!-- homePage list all questions and answers in question id order -->
 <html>	
 	<head> 
 	<meta charset="UTF-8">
@@ -10,76 +11,60 @@
 
 
 <body> 
-
+	<!-- mainPage.jsp contains header, navigation bar, and ask question form -->
 	<%@ include file = "mainPage.jsp" %>
 		
 	<article>
 	<div class="ex1"> 
-	<% //for tomcat server
+	<% 
                     
-           Statement stmt = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
-          //  ResultSet rsa = 
-            //		stmt.executeQuery( "SELECT question_id, answer_text, dateUpdated "
-            //				+ " FROM answers");
-            			           				
-          // ResultSet rsq =
-        //		   stmt.executeQuery( "SELECT question_id, question_text FROM questions" );
-           
-         /* ResultSet rs = stmt.executeQuery(" SELECT q.question_id,q.question_text,a.answer_text,a.dateUpdated, a.user_id "
-          +" FROM questions q,answers a "
-          +" WHERE q.question_id = a.question_id "
-          +" ORDER BY q.question_id");*/
-          
-          ResultSet rs1, rs2 = null;
-          PreparedStatement ps = null;
-
-          String query = " SELECT q.question_id,q.question_text,a.answer_text,a.dateUpdated, a.user_id "
-                  +" FROM questions q,answers a "
-                  +" WHERE q.question_id = a.question_id "
-                  +" ORDER BY q.question_id";
-
-          ps = con.prepareStatement(query);                
-          rs1 = ps.executeQuery();
-          rs2 = ps.executeQuery();
+         Statement stmt = con.createStatement();
+         //database query get question id and question text    			           				
+         ResultSet rsq = stmt.executeQuery( "SELECT DISTINCT question_id, question_text FROM questions" );
+         
+         int num = 0;       
+         String qtext[] = new String[100];
+         int qids[] = new int[100];         
+         //save question text in string array, save question id in int array
+         while(rsq.next()) {qtext[num]=rsq.getString("question_text"); qids[num]=rsq.getInt("question_id"); num++;}
     %>
-    
-	<div class="box">
-	
-	<div class="column">
-	
-	
-	<% while(rs1.next()) {%>
-  		<div class="row">
-    		<table>  		   		
-      			<tr>     			
-        			<th><%= rs1.getString("question_text")%></th>       
-      			</tr>
-      			<%int temp = rs1.getInt("question_id"); %>
-      			<%while(rs2.next()){ %>
-      				<%if (rs2.getInt("question_id")==temp){%>
-      			<tr>     				
+		<!-- question and answer list in table format -->
+       	<div class="box">   	
+     	<div class="column">
+     	
+        <%  ResultSet rs2 = null;
+        //database query on answers
+         for (int i=0;i<num; i++) { 
+        	 
+          	String query1 = "SELECT answer_text, dateUpdated  FROM answers WHERE question_id=" + qids[i];       
+          	rs2 = stmt.executeQuery(query1);
+        %> 
+          	<!-- list questions and answers -->
+          	<div class="row">
+    			<table>  		   		
+      				<tr>     			
+        				<th><%= qtext[i]%></th>       
+      				</tr>
+      			<% while(rs2.next()){%>
+      				<tr>     				
       					<td><%=rs2.getString("answer_text") %>></td>
-      			</tr> 
-      			
-      				<%}%>
-      			<%}%>
-      			<tr class="ask">     			   	      			
-  					<td><button type="button" onclick="answerQuestion(<%= rs1.getInt("question_id") %>)">Answer</button></td> 			 
-  				</tr>   				     
-    		</table>
+      				</tr> 
+      			<% }%>
+      				<tr class="ask">     			   	      			
+  						<td><button type="button" onclick="answerQuestion(<%= qids[i] %>)">Answer</button></td> 			 
+  					</tr>   				     
+          	</table>
   		</div>
-		<%} %>
-  		
-   		</div>
-	</div>
+        <%} %>  		
+   	 </div>
+	 </div>
 	
 	
-
+	<!-- answer button click response -->
     <script>
 		function answerQuestion(id) {  
 			document.getElementById("answer").style.display = "block";
-			document.getElementById("qid").value = id;			
-			
+			document.getElementById("qid").value = id;						
 		}
 
 		function closeForm() {
@@ -87,6 +72,7 @@
 		}	
 	</script>
 	
+	<!--  answer button popup answer textarea -->
 	<div class="form-popup" id="answer">    
  		<form action="homePage.jsp" method="POST" class="form-container">
  			ID: <input id="qid" name="qid" readonly="readonly"></input>
@@ -98,13 +84,9 @@
   	
  		</form>
   	</div> 
-  			
-    </div>	
-    
- 
-    <%    
-    	//
-    	//out.print(request.getParameter("id"));
+  	
+	 <%    
+    	// add new answer of the question to database answers table	
         PreparedStatement addanswer = conAns.prepareStatement(
         		"INSERT INTO answers(question_id, answer_text, dateUpdated) "
         		+ "VALUES (?,?,?)" );
@@ -113,22 +95,23 @@
     	
         if (request.getParameter("add")!= null) { 
 
-        	String qtext = request.getParameter("answertext"); 
+        	String atext = request.getParameter("answertext"); 
 
         	int qid = Integer.parseInt(sid);
-        	
-                
+        	               
         	Date date = new Date();
 			Timestamp timeStamp = new Timestamp(date.getTime());
 						
 			addanswer.setInt(1, qid);
-			addanswer.setString(2, qtext);		
+			addanswer.setString(2, atext);		
 			addanswer.setTimestamp(3, timeStamp);
 			int result = addanswer.executeUpdate();
         }
                	
     %> 
-    
+      			
+    </div>	
+   
    	</article>  
 </body>
 </html>
