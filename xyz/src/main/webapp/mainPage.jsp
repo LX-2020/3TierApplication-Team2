@@ -20,8 +20,8 @@
 	<ul>		
 		<li><a class="active" href="homePage.jsp">Home</a></li>		
 		
-		<li><a href="#account">Account</a></li>
-		<li><a href="moderation.jsp">Moderation</a></li>
+		<li><a href="account.jsp">Account</a></li>
+		<li><a href="moderation.html">Moderation</a></li>
 		<li><a href="../../../../CS157a/src/main/webapp/pages/login.html">Log Out</a></li>
 		<li>
 			<div class="dropdown">
