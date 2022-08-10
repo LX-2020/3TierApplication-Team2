@@ -17,8 +17,11 @@ try
     int cnt=0;
     if (rs.next()){
         cnt = rs.getInt(1);
-        response.sendRedirect("frontPage.jsp");
+        session=request.getSession();
+        session.setAttribute("username", username);
+        response.sendRedirect("../../../../../xyz/src/main/webapp/homePage.jsp");
         System.out.println("successfully logged in! Woooop!");
+        System.out.println("Your username is: "+username);
     }
     if (cnt == 0){
         System.out.println("Unsuccessful login. Verify username and password.");

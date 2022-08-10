@@ -3,7 +3,7 @@ body{
     margin: 0;
     padding: 0;
     font-family: sans-serif;
-    background-image:url('../images/dorms.jpg');
+    background-image:url('../../../../../images/dorms.jpg');
     background-size: cover;
     background-position: center;
     /*background: linear-gradient(120deg, #2980b9, #8e44ad);
@@ -103,12 +103,11 @@ form .txt_field{
 input[type="submit"]{
     /* Login button */
     width:100%;
-    margin: -5px 0 20px 5px;
     height: 50px;
     border: 1px solid;
     background: #2691d9;
     border-radius: 25px;
-    font-size: 15px;
+    font-size: 18px;
     color: #e9f4fb;
     /* ^^^ background txt color in the circle */
     font-weight: 700;

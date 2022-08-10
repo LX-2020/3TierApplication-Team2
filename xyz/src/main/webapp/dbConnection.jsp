@@ -13,7 +13,7 @@
 <%
 String db = "sjsu-bq";
 String user = "root";
-String password = "620302mlx";
+String password = "Timecardmnew2244";
 
 java.sql.Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/sjsu-bq?autoReconnect=true&useSSL=false",user, password);
 java.sql.Connection con2 = DriverManager.getConnection("jdbc:mysql://localhost:3306/sjsu-bq?autoReconnect=true&useSSL=false",user, password);
