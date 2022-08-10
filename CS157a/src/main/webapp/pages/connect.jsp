@@ -3,7 +3,7 @@
 String email = request.getParameter("email");
 String firstName = request.getParameter("firstName");
 String lastName = request.getParameter("lastName");
-String username = request.getParameter("username");
+String username = request.getParameter("userName");
 String password = request.getParameter("password");
 String authorizationNumber = request.getParameter("authorizationNumber");
 
@@ -11,8 +11,8 @@ try{
     Class.forName("com.mysql.jdbc.Driver");
     java.util.Date now = new java.util.Date();
 	java.sql.Date sqlDate = new java.sql.Date(now.getTime());
-    String INSERT_USERS_SQL = "INSERT INTO users" + " (email, firstName, lastName, username, password, authorizationNumber, dateCreated) VALUES " + " (?, ?, ?, ?, ?, ?, ?);";
-    Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/sjsu-bq", "root", "Timecardmnew2244");
+    String INSERT_USERS_SQL = "INSERT INTO users" + " (email, firstName, lastName, userName, password, authorizationNumber, dateCreated) VALUES " + " (?, ?, ?, ?, ?, ?, ?);";
+    Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/sjsu-bq", "root", "nd63nt34");
     PreparedStatement ps = conn.prepareStatement(INSERT_USERS_SQL);
     ps.setString(1,email);
     ps.setString(2,firstName);
